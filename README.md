@@ -37,6 +37,54 @@
 - 🎬 **video** - 视频生成
 - 📸 **common** - 通用摄影技术（205个元素）
 
+## 📦 安装
+
+### 前置要求
+
+- **Claude Code** - 需要安装Claude Code CLI
+- **Python 3.8+** - 用于运行底层引擎
+- **Git** - 用于克隆项目（可选）
+
+### 安装步骤
+
+#### 方式1：克隆到本地（推荐）
+
+```bash
+# 1. 克隆项目
+git clone https://github.com/huangserva/skill-prompt-generator.git
+
+# 2. 进入项目目录
+cd skill-prompt-generator
+
+# 3. 安装Python依赖
+pip install -r requirements.txt
+```
+
+**重要**：克隆后，`.claude/skills/` 下的12个Skills会自动被Claude Code识别。
+
+#### 方式2：下载ZIP
+
+1. 访问 https://github.com/huangserva/skill-prompt-generator
+2. 点击 "Code" → "Download ZIP"
+3. 解压到任意目录
+4. 在该目录下运行 `pip install -r requirements.txt`
+
+### 验证安装
+
+在Claude Code中测试：
+
+```
+# 测试人像生成skill
+生成电影级的亚洲女性
+
+# 测试设计skill
+生成Bento Grid海报
+```
+
+如果Claude Code能正确调用Skills并生成提示词，说明安装成功。
+
+---
+
 ## 🚀 快速开始
 
 ### 方式1：通过Skills使用（推荐）⭐
