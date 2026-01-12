@@ -462,13 +462,19 @@ class ElementDB:
 
         result = dict(row)
 
-        # 解析JSON字段
-        if result.get('keywords'):
-            result['keywords'] = json.loads(result['keywords'])
-        if result.get('source_prompts'):
-            result['source_prompts'] = json.loads(result['source_prompts'])
-        if result.get('metadata'):
-            result['metadata'] = json.loads(result['metadata'])
+        # Parse JSON fields with error handling
+        def safe_json_parse(value, default):
+            """Safely parse JSON, return default if empty or invalid"""
+            if not value or value == '':
+                return default
+            try:
+                return json.loads(value)
+            except (json.JSONDecodeError, TypeError):
+                return default
+
+        result['keywords'] = safe_json_parse(result.get('keywords'), [])
+        result['source_prompts'] = safe_json_parse(result.get('source_prompts'), [])
+        result['metadata'] = safe_json_parse(result.get('metadata'), {})
 
         # 添加标签
         result['tags'] = self.get_element_tags(result['element_id'])
