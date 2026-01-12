@@ -1,8 +1,14 @@
 
+
 import sqlite3
 import json
+import sys
+import os
 
-conn = sqlite3.connect('extracted_results/elements.db')
+sys.path.append(os.getcwd())
+from skill_library.constants import DEFAULT_DB_PATH
+
+conn = sqlite3.connect(DEFAULT_DB_PATH)
 cursor = conn.cursor()
 
 cursor.execute("SELECT * FROM elements WHERE name = 'black_hair'")

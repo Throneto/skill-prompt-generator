@@ -9,11 +9,12 @@ import os
 import json
 from typing import Dict, List, Optional
 
-# Add parent directory to path for imports
+
+# Add project root to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 try:
-    from intelligent_generator import IntelligentGenerator
+    from skill_library.intelligent_generator import IntelligentGenerator
 except ImportError:
     IntelligentGenerator = None
 

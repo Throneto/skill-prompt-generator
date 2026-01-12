@@ -1,7 +1,13 @@
 
-import sqlite3
 
-conn = sqlite3.connect('extracted_results/elements.db')
+import sqlite3
+import sys
+import os
+
+sys.path.append(os.getcwd())
+from skill_library.constants import DEFAULT_DB_PATH
+
+conn = sqlite3.connect(DEFAULT_DB_PATH)
 cursor = conn.cursor()
 
 # Fix "black hair hair"

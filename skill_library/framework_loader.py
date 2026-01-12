@@ -5,16 +5,19 @@
 Framework Loader and Framework-Driven Prompt Generator
 """
 
+
 import yaml
 import os
+
 from typing import Dict, List, Optional, Any
+from .constants import DEFAULT_FRAMEWORK_PATH, DEFAULT_DB_PATH
 
 
 class FrameworkLoader:
     """框架加载器"""
 
     @staticmethod
-    def load(framework_path: str = "prompt_framework.yaml") -> Dict:
+    def load(framework_path: str = DEFAULT_FRAMEWORK_PATH) -> Dict:
         """
         加载框架配置文件
 
@@ -171,11 +174,12 @@ class FrameworkLoader:
         return issues
 
 
+
 class FrameworkDrivenGenerator:
     """框架驱动的生成器"""
 
-    def __init__(self, db_path: str = "extracted_results/elements.db",
-                 framework_path: str = "prompt_framework.yaml"):
+    def __init__(self, db_path: str = DEFAULT_DB_PATH,
+                 framework_path: str = DEFAULT_FRAMEWORK_PATH):
         """
         初始化
 
@@ -187,7 +191,7 @@ class FrameworkDrivenGenerator:
         self.framework = FrameworkLoader.load(framework_path)
 
         # 加载IntelligentGenerator（用于数据库查询）
-        from intelligent_generator import IntelligentGenerator
+        from .intelligent_generator import IntelligentGenerator
         self.generator = IntelligentGenerator(db_path)
 
     def generate_by_framework(self, intent: Dict) -> Dict:

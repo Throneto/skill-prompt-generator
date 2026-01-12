@@ -16,10 +16,13 @@ from datetime import datetime
 import re
 
 
+
+from .constants import DEFAULT_DB_PATH
+
 class ElementDB:
     """通用元素库数据库管理类"""
 
-    def __init__(self, db_path: str = "extracted_results/elements.db"):
+    def __init__(self, db_path: str = DEFAULT_DB_PATH):
         """
         初始化数据库连接
 

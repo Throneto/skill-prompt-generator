@@ -5,6 +5,9 @@ pyyaml>=6.0
 # Database
 sqlite3  # Built-in with Python
 
+# PPT Generation (NanoBanana)
+google-genai>=0.2.0
+
 # Optional: For advanced features
 # requests>=2.28.0  # If you add web fetching
 # pandas>=1.5.0     # For data analysis

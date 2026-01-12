@@ -10,10 +10,14 @@ import json
 from typing import Dict, List, Optional, Tuple
 
 
+
+from .constants import DEFAULT_DB_PATH
+
+
 class IntelligentGenerator:
     """智能提示词生成器 - 理解意图，检查一致性"""
 
-    def __init__(self, db_path: str = "extracted_results/elements.db"):
+    def __init__(self, db_path: str = DEFAULT_DB_PATH):
         self.conn = sqlite3.connect(db_path)
         self.cursor = self.conn.cursor()
 

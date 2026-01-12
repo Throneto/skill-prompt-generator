@@ -35,6 +35,7 @@ from mcp_server.tools.element_query import (
 )
 from mcp_server.tools.consistency_checker import check_consistency, format_report, format_report_json
 from mcp_server.tools.prompt_composer import compose_prompt, format_prompt_output
+from mcp_server.tools.ppt_skill import generate_ppt
 
 # Import prompts
 from mcp_server.prompts.portrait import generate_portrait_prompt_sop, generate_cinematic_portrait_sop
@@ -179,6 +180,31 @@ def get_library_stats(domain: str = "") -> str:
     """
     stats = get_domain_stats(domain if domain else None)
     return format_stats_json(stats)
+
+
+@mcp.tool()
+def nanobanana_ppt_generator(
+    description: str, 
+    pages: int = 5, 
+    style: str = "gradient-glass", 
+    resolution: str = "2K"
+) -> str:
+    """
+    Generate professional PPT images using Nano Banana Pro.
+    
+    Automatically plans the slide structure based on the description/content,
+    then generates high-quality images using Gemini and predefined styles.
+    
+    Args:
+        description: The topic or content of the presentation.
+        pages: Number of slides (default: 5).
+        style: Visual style ('gradient-glass' or 'vector-illustration').
+        resolution: Image resolution ('2K' or '4K').
+        
+    Returns:
+        JSON string containing the output directory and slide details.
+    """
+    return generate_ppt(description, pages, style, resolution)
 
 
 # ============================================================

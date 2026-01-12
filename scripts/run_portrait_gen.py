@@ -8,8 +8,9 @@ import json
 # Add project root to path
 sys.path.append(os.getcwd())
 
+
 from mcp_server.tools.intent_parser import parse_intent
-from intelligent_generator import IntelligentGenerator
+from skill_library.intelligent_generator import IntelligentGenerator
 
 def main():
     user_request = "电影级的亚洲女性，张艺谋风格"
@@ -53,7 +54,7 @@ def main():
         adapted_intent['lighting'] = intent['lighting'].get('lighting_type', 'natural')
 
     # 2. Select Elements
-    gen = IntelligentGenerator(db_path="extracted_results/elements.db")
+    gen = IntelligentGenerator()
     elements = gen.select_elements_by_intent(adapted_intent)
     
     print("🎨 选用元素")
