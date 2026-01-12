@@ -352,7 +352,8 @@ class IntelligentGenerator:
                 print(f"✓ 识别到导演风格'{director_style}'，添加特征关键词: {', '.join(director_keywords[director_style])}")
 
         if style_keywords:
-            style_elements = self.search_style_elements(style_keywords)
+            domain = intent.get('domain', 'portrait')
+            style_elements = self.search_style_elements(style_keywords, domain)
             elements.extend(style_elements)
 
         return elements
@@ -390,7 +391,7 @@ class IntelligentGenerator:
 
         return relevance
 
-    def search_style_elements(self, keywords: List[str]) -> List[Dict]:
+    def search_style_elements(self, keywords: List[str], domain: Optional[str] = None) -> List[Dict]:
         """搜索风格元素，排除人物属性类别，按相关性×质量排序"""
         excluded_categories = self.knowledge['subject_attribute_categories']
 
@@ -401,11 +402,16 @@ class IntelligentGenerator:
             FROM elements
             WHERE ({keyword_conditions})
               AND ai_prompt_template != ''
-            ORDER BY reusability_score DESC
-            LIMIT 30
         """
 
         params = [f"%{kw}%" for kw in keywords]
+
+        if domain:
+            query += " AND domain_id = ?"
+            params.append(domain)
+
+        query += " ORDER BY reusability_score DESC LIMIT 30"
+
         self.cursor.execute(query, params)
 
         elements = []
