@@ -449,6 +449,8 @@ template = {
 
 ## 🙏 致谢
 
+- [Skill Prompt Generator](https://github.com/huangserva/skill-prompt-generator) - 基于 Skills 的智能提示词生成系统
+- [NanoBanana PPT Skills](https://github.com/op7418/NanoBanana-PPT-Skills) - 基于 AI 自动生成高质量 PPT 图片和视频的强大工具，支持智能转场和交互式播放
 - [Claude Code](https://claude.ai/) - Skills 系统支持
 - [Model Context Protocol](https://modelcontextprotocol.io/) - MCP 协议标准
 - Universal Elements Library 架构设计
